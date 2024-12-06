@@ -1,0 +1,327 @@
+     /* CORPO */
+*{
+    margin: 0;
+    padding: 0;
+}
+body {
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    background-color: #161625;
+    color: #f4f4f4;
+}
+
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+
+
+     /* TITULO */
+nav{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 8vh;
+}
+a{
+    text-decoration: none;
+    color: #f4f4f4;
+}
+.logo{
+    font-size: 24px;
+    letter-spacing: 4px;
+}
+
+
+
+     /* CORPO */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin: 0;
+}
+
+.introducao {
+    margin-bottom: 20px;
+    text-align: center;
+    letter-spacing: 3px;
+    width: 80%;
+    font-size: 17px;
+}
+
+
+     /* FORMULARIO */
+.formulario{
+    padding: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-group{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.info-form{
+    align-items: center;
+    display: flex;
+    gap: 15px;
+    margin: 30px 10px;
+}
+
+input{
+    justify-content: center;
+    background-color: #161625;
+    color: #f4f4f4;
+    width: 40vw;
+    padding: 13px;
+    border: 1px solid #a6b1c9;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.btn-verificar {
+    background-color: #161625;
+    color: #6686c9;
+    padding: 10px 57px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    border: 2px solid #6686c9;
+    width: 13vw;
+}
+
+.btn-verificar:hover {
+    background-color: #0b4dda;
+}
+
+.btn-modal {
+    background-color: #1356e6;
+    height: 5vh;
+    width: 6vw;
+    border: 2px solid #6686c9;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+
+
+     /* MODAL CRUD */
+.modal{
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    border-radius: 8px;
+}
+
+.modal-content {
+    display: flex;
+    max-width: 800px;
+    max-height: 80vh;
+    color: #f4f4f4;
+    flex-direction: column;
+    align-items: center;
+    overflow:hidden;
+    overflow-y: scroll;
+    color: black;
+    border-radius: 8px;
+    text-align: center;
+    padding: 20px;
+    background-color: #202038;
+    border: 1px solid #444466;
+}
+
+.modal-content span {
+    text-align: left;
+}
+
+.func-modal h2 {
+    font-size: 27px;
+    margin: 15px 0px;
+    color: #d3d1d1;
+}
+
+.form-modal {
+    margin: 20px 5px;
+}
+
+.form-modal input{
+    margin: 8px 5px;
+}
+
+.form-modal button {
+    background-color: #161625;
+    color: #6686c9;
+    padding: 10px 57px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    border: 2px solid #6686c9;
+    width: 13vw;
+    margin: 10px 0px 5px 0px;
+}
+
+.btn-close{
+    text-align: left;
+    align-items: start;
+    width: 95%;
+}
+
+.close {
+    color: #aaa;
+    float: left;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+}
+
+.close:hover{
+    color: #f4f4f4;
+}
+     
+     /* Mensagem modal */
+.sucess {
+    color: white;
+    background-color: green;
+    padding: 10px;
+    border: 1px solid rgb(7, 168, 7);
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.error {
+    color: black;
+    background-color: red;
+    padding: 10px;
+    border: 1px solid rgb(140, 4, 4);
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+/* Tabela Modal */
+.tb-modal {
+    padding: 10px;
+    height:inherit; 
+    color: #f4f4f4;
+}
+
+table {
+    width: 100%;
+    border-spacing: 10px;
+    word-break: break-all;
+    border-collapse: collapse;
+}
+
+tr {
+    border-bottom: 2px solid rgb(66, 65, 65)!important;
+}
+
+tbody tr td {
+    vertical-align: text-top;
+    padding: 6px;
+    max-width: 50px;
+    background-color: #6686c9;
+}
+
+thead tr th {
+    padding: 5px;
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 50px;
+    background-color: #161625;
+    height: 2.25rem;
+}
+
+tbody tr {
+    margin-bottom: 50px;
+
+}
+
+
+
+     /* RESULTADO */
+.resultado{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #202038;
+    border: 1px solid #444466;
+    border-radius: 8px;
+    padding: 20px;
+    width: 50%;
+    color: #f4f4f4;
+    margin-top: 20px;
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.resultado h2{
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.resultado ul{
+    display: flex;
+    flex-direction: column;
+}
+
+.resultado li{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    list-style: none;
+    margin: 10px;
+    letter-spacing: 2px;
+}
+
+.status{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+
+}
+
+.status p{
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    gap: 5px;
+    letter-spacing: 2px;
+}
+
+.status span{
+    align-items: center;
+
+}
+
+.portas{
+    width: 100%;
+}
+
+
+
+/* ICONES */
+.material-icons-round{
+    font-size: 1.2rem;
+    color: green;
+}
+
+.material-symbols-outlined {
+    font-size: 1.8rem;
+}
+
+       
+
+

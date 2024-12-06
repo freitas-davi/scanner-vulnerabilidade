@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons+Round"rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <title>Scanner de Vulnerabilidades</title>
+
+</head>
+<body>
+    <header>
+        <nav>
+            <a class="logo" href="/">Scanner de vulnerabilidades</a>
+        </nav>
+    </header>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <ul>
+            {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
+    <main>
+        <div class="container">
+            <div class="introducao">
+                <p>
+                    Este scanner permite verificar o status de servidores e realizar análises de 
+                    portas abertas. Você pode inserir uma URL, além de selecionar as 
+                    portas que deseja escanear. É uma ferramenta utilizada para estudos, ajudando a 
+                    identificar possíveis vulnerabilidades em redes.
+                </p>
+            </div>
+            <div class="formulario">
+                <form action="/" method="post">
+                    <div class="form-group">
+                        <div class="info-form">
+                            <input type="text" placeholder="Digite a URL" name="url-input" id="url-input" required>
+                            <button type="button" id="open-modal" name="open_modal" class="btn-modal">
+                                <span class="material-symbols-outlined">door_open</span>
+                            </button>
+                        </div>
+                        <button type="submit" class="btn-verificar">Verificar</button>
+                    </div>       
+                </form>
+            </div>
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <div class="btn-close">
+                        <span class="close">&times;</span>
+                    </div>
+                    
+                    <div class="func-modal">
+                        <h2>Selecione as portas que você deseja escanear.</h2>
+                        <div class="form-modal">
+                            <form action="{{ url_for('main.adicionar') }}" method="POST" id="form-porto">
+                                <input type="hidden" id="porta-id" name="porta-id">
+                                <input type="text" placeholder="Número porta" id="numero-porta" name="numero-porta">
+                                <input type="text" placeholder="Descrição da porta" id="descricao" name="descricao">
+                                <button type="submit" class="btn-addport">Adicionar</button>
+                            </form>
+                        </div>
+                        <div class="tb-modal">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Porta</th>
+                                        <th>Descrição</th>
+                                        <th>Editar</th>
+                                        <th>Excluir</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for porta in portas_crud %}
+                                    <tr>
+                                        <td>{{ porta.numero_porta }}</td>
+                                        <td>{{ porta.descricao }}</td>
+                                        <td>
+                                            <button type="button" class="btn-editport" 
+                                                onclick="editarPorta('{{ porta.id }}', '{{ porta.numero_porta }}', '{{ porta.descricao }}')">
+                                                <span class="material-symbols-outlined">edit</span>
+                                            </button>
+                                        </td>
+                                        <td>
+                                            <form action="{{ url_for('main.excluir', id=porta.id) }}" method="POST" style="display: inline;">
+                                                <button type="submit" class="btn-deleteport">
+                                                    <span class="material-symbols-outlined">delete</span>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="resultado" class="resultado" style="display: none;">
+                {% if status %}
+                    <h2>{{ url }}</h2>
+                    <div class="status">
+                        <p>Status: {{ status }} <span class="material-icons-round">&#xe86c;</span></p>
+                        {%  if response_time is not none %}
+                            <p>Tempo de resposta: {{ response_time }}s</p>
+                        {% else %}
+                            <p>Tempo de resposta: Tempo de resposta não disponível</p>
+                        {% endif %}
+                    </div>
+                    <div class="portas">
+                        {% if portas_abertas %}
+                            <ul>
+                                {% for porta in portas_abertas %}
+                                    <li>Porta {{ porta }}: Open</li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <h4>Nenhuma porta vulnerável aberta foi encontrada.</h4>
+                        {% endif %}
+                    </div>
+                    
+                {% endif %}
+            </div>
+        </div>
+    </main>
+
+    <script src="/static/js/script.js"></script>
+
+</body>
+</html>
