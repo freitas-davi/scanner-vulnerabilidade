@@ -60,7 +60,7 @@ def adicionar():
             nova_porta = Tb_porta(numero_porta=int(numero_porta), descricao=descricao)
             db.session.add(nova_porta)
             db.session.commit()
-            flash('Porta adicionada com sucesso!', 'success')
+            flash('Porta adicionada com sucesso!', 'sucess')
     except Exception as e:
         db.session.rollback()
         flash(f'Erro: {e}', 'error')
@@ -80,7 +80,7 @@ def editar(id):
         porta_existente.numero_porta = novo_numero_porta
         porta_existente.descricao = nova_descricao
         db.session.commit()
-        flash('Porta editada com sucesso.')
+        flash('Porta editada com sucesso.', 'sucess')
     else:
         flash('Número da porta igual ou não existente!', 'error')
 
@@ -93,7 +93,7 @@ def excluir(id):
     porta_existente = Tb_porta.query.get_or_404(id)
     db.session.delete(porta_existente)
     db.session.commit()
-    flash('Porta exluída com sucesso!', 'sucess')
+    flash('Porta exluída!', 'error')
 
     return redirect(url_for('main.check'))
 
